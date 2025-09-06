@@ -1,49 +1,316 @@
-# quizle
+# Quizle Server
 
-This project was created using the [Ktor Project Generator](https://start.ktor.io).
+**Quizle Server** is a robust and scalable back-end application built with the **Ktor framework** in **Kotlin**. It's designed to power the Quizle platform, providing all the necessary functionality to manage and deliver quizzes and questions to users.
 
-Here are some useful links to get you started:
+This project is built following a **Clean Architecture** approach with distinct Data, Domain, and Presentation layers, ensuring a highly maintainable, testable, and modular codebase.
 
-- [Ktor Documentation](https://ktor.io/docs/home.html)
-- [Ktor GitHub page](https://github.com/ktorio/ktor)
-- The [Ktor Slack chat](https://app.slack.com/client/T09229ZC6/C0A974TJ9). You'll need to [request an invite](https://surveys.jetbrains.com/s3/kotlin-slack-sign-up) to join.
+-----
 
 ## Features
 
-Here's a list of features included in this project:
+  * **Quiz and Question Management**: A full-featured API to create, retrieve, update, and delete quizzes and their associated questions.
+  * **Secure Authentication**: Utilizes **JSON Web Tokens (JWT)** to secure API endpoints. Users must authenticate to access protected routes, ensuring only authorized personnel can manage quiz content.
+  * **Cloud Storage Integration**: Connects to **AWS S3** for storing quiz-related assets, such as images for questions or quizzes, providing scalable and reliable file storage.
+  * **Clean Architecture**: The project's structure separates concerns into three core layers:
+      * **Presentation Layer**: Handles API routing, request handling, and authentication.
+      * **Domain Layer**: Contains the core business logic and use cases for managing quizzes.
+      * **Data Layer**: Manages data sources, including interactions with the **MongoDB** database for quiz data and **AWS S3** for file storage.
+  * **Dependency Injection**: Uses the **Koin framework** for managing dependencies, which improves testability and code organization.
+  * **Error Handling**: The **Status Pages** plugin provides centralized exception handling for cleaner and more consistent API responses.
+  * **Comprehensive Logging**: The **Call Logging** plugin provides detailed logs of all client requests, which is essential for monitoring and debugging.
 
-| Name                                                                   | Description                                                                        |
-| ------------------------------------------------------------------------|------------------------------------------------------------------------------------ |
-| [Routing](https://start.ktor.io/p/routing)                             | Provides a structured routing DSL                                                  |
-| [kotlinx.serialization](https://start.ktor.io/p/kotlinx-serialization) | Handles JSON serialization using kotlinx.serialization library                     |
-| [Content Negotiation](https://start.ktor.io/p/content-negotiation)     | Provides automatic content conversion according to Content-Type and Accept headers |
-| [MongoDB](https://start.ktor.io/p/mongodb)                             | Adds MongoDB database to your application                                          |
-| [Status Pages](https://start.ktor.io/p/status-pages)                   | Provides exception handling for routes                                             |
-| [Koin](https://start.ktor.io/p/koin)                                   | Provides dependency injection                                                      |
-| [Call Logging](https://start.ktor.io/p/call-logging)                   | Logs client requests                                                               |
-| [Authentication](https://start.ktor.io/p/auth)                         | Provides extension point for handling the Authorization header                     |
-| [Authentication JWT](https://start.ktor.io/p/auth-jwt)                 | Handles JSON Web Token (JWT) bearer authentication scheme                          |
-| [Authentication Basic](https://start.ktor.io/p/auth-basic)             | Handles 'Basic' username / password authentication scheme                          |
-| [Resources](https://start.ktor.io/p/resources)                         | Provides type-safe routing                                                         |
+-----
 
-## Building & Running
+## Getting Started
 
-To build or run the project, use one of the following tasks:
+1.  **Clone the repository**:
 
-| Task                          | Description                                                          |
-| -------------------------------|---------------------------------------------------------------------- |
-| `./gradlew test`              | Run the tests                                                        |
-| `./gradlew build`             | Build everything                                                     |
-| `buildFatJar`                 | Build an executable JAR of the server with all dependencies included |
-| `buildImage`                  | Build the docker image to use with the fat JAR                       |
-| `publishImageToLocalRegistry` | Publish the docker image locally                                     |
-| `run`                         | Run the server                                                       |
-| `runDocker`                   | Run using the local docker image                                     |
+    ```bash
+    git clone https://github.com/MamonAburawi/Quizle-Server.git
+    ```
 
-If the server starts successfully, you'll see the following output:
+2.  **Configure Environment Variables**:
+    In a `secret.conf` file in the root directory, add your configurations for JWT and AWS.
 
+    ```properties
+    # JWT Configuration
+    JWT_SECRET=your_super_secret_key
+    JWT_ISSUER=your_app_domain
+    JWT_AUDIENCE=your_app_domain
+
+    # AWS S3 Configuration
+    AWS_ACCESS_KEY_ID=your_access_key
+    AWS_SECRET_ACCESS_KEY=your_secret_key
+    AWS_REGION=your_aws_region
+    AWS_S3_BUCKET_NAME=your-quizle-bucket
+    ```
+
+3.  **Build and Run the Server**:
+    Once your dependencies are running, you can start the Ktor server.
+
+    ```bash
+    ./gradlew run
+    ```
+
+-----
+
+## API Endpoints
+
+ The API is designed to manage quizzes and their questions. All endpoints will soon be secured with a valid JWT in the Authorization header.
+## Quiz Question Endpoints
+
+  * **`GET /quiz/questions?topicCode={topicCode}`**
+      * Retrieves all quiz questions for a specific topic.
+  * **`POST /quiz/questions`**
+      * Creates or updates a single quiz question.
+  * **`GET /quiz/questions/{id}`**
+      * Retrieves a specific quiz question by its unique ID.
+  * **`DELETE /quiz/questions/{id}`**
+      * Deletes a quiz question using its unique ID.
+  * **`POST /quiz/questions/bulk`**
+      * Inserts multiple quiz questions in a single request.
+  * **`GET /quiz/questions/random?limit={limit}&topicId={topicId}`**
+      * Fetches a specified number of random questions from a given topic.
+  * **`GET /quiz/topic/active`**
+      * Lists the topics that have associated questions.
+
+### JSON Data Structure for Quiz Question
+
+The following JSON object represents the data structure for a single quiz question used across the relevant endpoints:
+
+```json
+{
+  "id": "string",
+  "topic_Id": "string",
+  "question_text": "string",
+  "correct_answer": "string",
+  "master_owner_Id": "string",
+  "incorrect_answers": [
+    "string"
+  ],
+  "owners_Ids": [
+    "string"
+  ],
+  "img_url": "string",
+  "created_at": 0,
+  "updated_at": 0,
+  "report_count": 0,
+  "level": "string",
+  "tags": [
+    "string"
+  ],
+  "explanation": "string"
+}
 ```
-2024-12-04 14:32:45.584 [main] INFO  Application - Application started in 0.303 seconds.
-2024-12-04 14:32:45.682 [main] INFO  Application - Responding at http://0.0.0.0:8080
+
+The `GET /quiz/questions` and `GET /quiz/questions/random` endpoints will return an array of this object. The `POST /quiz/questions/bulk` endpoint accepts an array of this object in its request body. The other endpoints use a single instance of this object for their request or response body.
+
+-----
+
+## Quiz Topic Endpoints
+
+  * **`GET /quiz/topic`**
+      * Retrieves a list of all available quiz topics.
+  * **`DELETE /quiz/topic/{id}`**
+      * Deletes a quiz topic by its ID.
+  * **`POST /quiz/topic`**
+      * Creates or updates a quiz topic.
+  * **`GET /quiz/topic/{id}`**
+      * Retrieves a specific quiz topic by its unique ID.
+  * **`GET /quiz/topic/search?titleAr=&titleEn=&subTitleAr=&subTitleEn=&tag={tag}`**
+      * Searches for quiz topics based on various criteria like title or tags.
+
+### JSON Data Structure for Quiz Topic
+
+This JSON object represents the data structure for a quiz topic, used by the related endpoints.
+
+```json
+{
+  "id": "string",
+  "title_Ar": "string",
+  "title_En": "string",
+  "subtitle_Ar": "string",
+  "subtitle_En": "string",
+  "owners_Ids": [
+    "string"
+  ],
+  "master_owner_Id": "string",
+  "topic_color": "string",
+  "imgUrl": "string",
+  "tags": [
+    "string"
+  ],
+  "views_count": 0,
+  "like_count": 0,
+  "dislike_count": 0,
+  "played_count": 0,
+  "quiz_time_min": 0,
+  "is_deleted": false,
+  "is_public": false,
+  "created_at": 0,
+  "updated_at": 0
+}
 ```
+
+The `GET` endpoints in this section will return either a single instance or an array of this object. The `POST` endpoint accepts a single instance in its request body.
+
+-----
+
+## Issue Report Endpoints
+
+  * **`GET /issue/report`**
+      * Retrieves all submitted issue reports.
+  * **`POST /issue/report`**
+      * Submits a new issue report.
+  * **`DELETE /issue/report/{id}`**
+      * Deletes an issue report by its ID.
+
+### JSON Data Structure for Issue Report
+
+This is the JSON structure for an issue report.
+
+```json
+{
+  "id": "string",
+  "question_id": "string",
+  "issue_type": "string",
+  "additional_comment": "string",
+  "user_id": "string",
+  "create_at": 0,
+  "is_resolved": false
+}
+```
+
+The `GET` endpoint returns an array of this object, while the `POST` endpoint accepts a single instance in its request body.
+
+-----
+
+## User Endpoints
+
+  * **`GET /user/{id}`**
+      * Retrieves a user's details using their unique ID.
+  * **`POST /user/register`**
+      * Registers a new user account.
+  * **`POST /user/login?email={email}&password={password}`**
+      * Authenticates a user and provides a login token.
+  * **`PATCH /user/update`**
+      * Updates a user's profile information.
+  * **`POST /user/force_logout?userId={userId}`**
+      * Forces a specific user to log out.
+  * **`GET /user/activity?userName={userName}`**
+      * Retrieves a log of user activities, optionally filtered by username.
+  * **`POST /user/add_activity`**
+      * Adds a new user activity record to the system.
+
+### JSON Data Structures for User and User Activity
+
+Below are the data structures for user and user activity.
+
+#### User
+
+```json
+{
+  "id": "string",
+  "user_name": "string",
+  "email": "string",
+  "password": "string",
+  "account_type": "string",
+  "phone": 0,
+  "token": {
+    "access_token": "string",
+    "exp_at": 0,
+    "created_at": 0,
+    "type": "string"
+  },
+  "gender": "string",
+  "img_profile": "string",
+  "favorite_topics_ids": [
+    "string"
+  ],
+  "liked_topics_ids": [
+    "string"
+  ],
+  "disliked_topics_ids": [
+    "string"
+  ],
+  "result_quizzies_ids": [
+    "string"
+  ],
+  "time_spent_quizzing_in_min": 0,
+  "total_correct_answers": 0,
+  "total_quizzes": 0,
+  "country_code": "string",
+  "language": "string",
+  "is_active": false,
+  "is_public": false,
+  "created_at": 0,
+  "updated_at": 0,
+  "settings": {
+    "enable_notification_app": false,
+    "enable_quiz_time": false,
+    "switch_to_custom_time_in_min": false,
+    "custom_quiz_time_in_min": 0
+  }
+}
+```
+
+#### User Activity
+
+```json
+{
+  "id": "string",
+  "user_name": "string",
+  "created_at": 0,
+  "action": "string",
+  "user_id": "string"
+}
+```
+
+-----
+
+## App Release Endpoints
+
+  * **`GET /release/last`**
+      * Retrieves the details of the most recent application release.
+  * **`POST /release`**
+      * Inserts a new app release record.
+
+### JSON Data Structure for App Release
+
+This is the data structure for an app release.
+
+```json
+{
+  "id": "string",
+  "version_name": "string",
+  "version_code": 0,
+  "release_date": 0,
+  "release_note_Ar": "string",
+  "release_note_En": "string",
+  "download_link": "string"
+}
+```
+
+-----
+
+## User Profile Image Endpoints
+
+  * **`POST /user/addImageProfile`**
+      * Uploads and sets a new profile image for a user.
+  * **`GET /user/imageProfile?imageUrl={imageUrl}`**
+      * Retrieves a user's profile image from the specified URL.
+  * **`DELETE /user/deleteImageProfile?imageUrl={imageUrl}`**
+      * Deletes a user's profile image using its URL.
+
+### JSON Data Structure for User Profile Image
+
+These endpoints do not use a JSON body for the image itself. The `POST` request uses `multipart/form-data`, and the `GET` and `DELETE` endpoints use a query parameter.
+
+## Project Structure (Clean Architecture)
+
+The project is divided into three distinct modules to enforce the dependency rule (**Presentation** → **Domain** → **Data**):
+
+  * **presentation**: This layer contains the Ktor application, including all API endpoints, routes, and `ApplicationCall` handling. It depends only on the Domain Layer.
+  * **domain**: This is the core of the application. It holds the business logic and use cases. This layer is independent of any frameworks and defines interfaces for data access (e.g., `QuizRepository` interfaces) but not their implementations.
+  * **data**: This layer contains the implementations of the data sources. It is where the concrete logic for interacting with **MongoDB** and **AWS S3** resides, providing the actual data to the Domain Layer via the defined interfaces.
 
