@@ -28,45 +28,26 @@ This project is built following a **Clean Architecture** approach with distinct 
     git clone https://github.com/MamonAburawi/Quizle-Server.git
     ```
 
-2.  **Configure Environment Variables**:
-    Add your configurations for JWT, MONO_DB, and AWS in local variables in your IDLE
+2.  **Secret credential**:
 
-    ```properties
-    # JWT Configuration
-    JWT_SECRET=your_super_secret_key
-    JWT_ISSUER=your_app_domain
-    JWT_AUDIENCE=your_app_domain
-    JWT_REALM=your_realm
-    JWT_EXPIREY=your_date_were_token_expire_in
-
-    # AWS S3 Configuration
-    AWS_ACCESS_KEY_ID=your_access_key
-    AWS_SECRET_ACCESS_KEY=your_secret_key
-
-
-    # MONGO DB Configuration
-    MONGO_DB_URL=your_mongo_db_url
-    
-    ```
-
-Here is the content of the `secret.conf` file to use for your setup.
+Add the `secret.conf` file with the following code.
 
 ```hocon
 jwt {
-    secret = ${?JWT_SECRET}
-    issuer = ${?JWT_ISSUER}
-    audience = ${?JWT_AUDIENCE}
-    realm = ${?JWT_REALM}
-    expiry = ${?JWT_TOKEN_EXPIRY}
+    secret = JWT_SECRET
+    issuer = JWT_ISSUER
+    audience = JWT_AUDIENCE
+    realm = JWT_REALM
+    expiry = JWT_TOKEN_EXPIRY
 }
 
 aws {
-     accessKey = ${?AWS_ACCESS_KEY_ID}
-     secret = ${?AWS_SECRET_ACCESS_KEY}
+     accessKey = AWS_ACCESS_KEY_ID
+     secret = AWS_SECRET_ACCESS_KEY
 }
 
 mongo {
-    url = ${?MONGO_DB_URL}
+    url = MONGO_DB_URL
 }
 
 ```
