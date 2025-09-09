@@ -2,22 +2,21 @@
 
 **Quizle Server** is a robust and scalable back-end application built with the **Ktor framework** in **Kotlin**. It's designed to power the Quizle platform, providing all the necessary functionality to manage and deliver quizzes and questions to users.
 
-This project is built following a **Clean Architecture** approach with distinct Data, Domain, and Presentation layers, ensuring a highly maintainable, testable, and modular codebase.
+This project is built following a **Clean Architecture** approach with distinct Data, Domain, and Presentation layers, ensuring a highly maintainable.
 
 -----
 
-## Features
+### 📝 Key Features
 
-  * **Quiz and Question Management**: A full-featured API to create, retrieve, update, and delete quizzes and their associated questions.
-  * **Secure Authentication**: Utilizes **JSON Web Tokens (JWT)** to secure API endpoints. Users must authenticate to access protected routes, ensuring only authorized personnel can manage quiz content.
-  * **Cloud Storage Integration**: Connects to **AWS S3** for storing quiz-related assets, such as images for questions or quizzes, providing scalable and reliable file storage.
-  * **Clean Architecture**: The project's structure separates concerns into three core layers:
-      * **Presentation Layer**: Handles API routing, request handling, and authentication.
-      * **Domain Layer**: Contains the core business logic and use cases for managing quizzes.
-      * **Data Layer**: Manages data sources, including interactions with the **MongoDB** database for quiz data and **AWS S3** for file storage.
-  * **Dependency Injection**: Uses the **Koin framework** for managing dependencies, which improves testability and code organization.
-  * **Error Handling**: The **Status Pages** plugin provides centralized exception handling for cleaner and more consistent API responses.
-  * **Comprehensive Logging**: The **Call Logging** plugin provides detailed logs of all client requests, which is essential for monitoring and debugging.
+
+1.  **Quiz and Question Management**: A comprehensive API for all CRUD (Create, Read, Update, Delete) operations on quizzes and their questions.
+2.  **Secure Authentication**: Uses JSON Web Tokens (JWT) to protect API routes, ensuring that only authenticated users can manage quiz content.
+3.  **MongoDB Integration**: Utilizes MongoDB for persistent and scalable data storage.
+4.  **Cloud Storage**: Integrates with AWS S3 for scalable and reliable storage of quiz-related assets like images.
+5.  **Clean Architecture**: The project is organized into three distinct layers to separate concerns: Presentation, Domain, and Data.
+6.  **Dependency Injection**: The Koin framework is used to manage dependencies, improving code organization and testability.
+7.  **Centralized Error Handling**: The Status Pages plugin provides consistent and clean API responses by handling exceptions centrally.
+8.  **Comprehensive Logging**: The Call Logging plugin generates detailed logs of all client requests, which is crucial for monitoring and debugging.
 
 -----
 
@@ -30,20 +29,47 @@ This project is built following a **Clean Architecture** approach with distinct 
     ```
 
 2.  **Configure Environment Variables**:
-    In a `secret.conf` file in the root directory, add your configurations for JWT and AWS.
+    Add your configurations for JWT, MONO_DB, and AWS in local variables in your IDLE
 
     ```properties
     # JWT Configuration
     JWT_SECRET=your_super_secret_key
     JWT_ISSUER=your_app_domain
     JWT_AUDIENCE=your_app_domain
+    JWT_REALM=your_realm
+    JWT_EXPIREY=your_date_were_token_expire_in
 
     # AWS S3 Configuration
     AWS_ACCESS_KEY_ID=your_access_key
     AWS_SECRET_ACCESS_KEY=your_secret_key
-    AWS_REGION=your_aws_region
-    AWS_S3_BUCKET_NAME=your-quizle-bucket
+
+
+    # MONGO DB Configuration
+    MONGO_DB_URL=your_mongo_db_url
+    
     ```
+
+Here is the content of the `secret.conf` file to use for your setup.
+
+```hocon
+jwt {
+    secret = ${?JWT_SECRET}
+    issuer = ${?JWT_ISSUER}
+    audience = ${?JWT_AUDIENCE}
+    realm = ${?JWT_REALM}
+    expiry = ${?JWT_TOKEN_EXPIRY}
+}
+
+aws {
+     accessKey = ${?AWS_ACCESS_KEY_ID}
+     secret = ${?AWS_SECRET_ACCESS_KEY}
+}
+
+mongo {
+    url = ${?MONGO_DB_URL}
+}
+
+```
 
 3.  **Build and Run the Server**:
     Once your dependencies are running, you can start the Ktor server.
@@ -51,6 +77,9 @@ This project is built following a **Clean Architecture** approach with distinct 
     ```bash
     ./gradlew run
     ```
+
+
+
 
 -----
 
@@ -254,7 +283,7 @@ Below are the data structures for user and user activity.
 }
 ```
 
-#### User Activity
+#### Log Event
 
 ```json
 {
