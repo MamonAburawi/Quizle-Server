@@ -1,4 +1,4 @@
-package data.util.exception
+package common.exception
 
 
 // The root of your custom exception hierarchy

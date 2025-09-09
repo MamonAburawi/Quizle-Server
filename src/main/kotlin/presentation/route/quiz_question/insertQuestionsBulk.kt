@@ -2,7 +2,7 @@ package presentation.route.quiz_question
 
 
 import com.domain.model.quiz.QuizQuestion
-import domain.repository.quiz.QuizQuestionRepository
+import domain.repository.QuizQuestionRepository
 import domain.util.onFailure
 import domain.util.onSuccess
 import io.ktor.http.HttpStatusCode

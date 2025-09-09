@@ -1,12 +1,12 @@
 package data.s3
 
-import data.util.AWSConstants
-import data.util.getFileNameFromUrl
-import domain.repository.s3.S3ServicesRepository
+import com.common.getFileNameFromUrl
+import common.constant.AWSConstants
+import domain.repository.S3ServicesRepository
 import domain.util.Result
-import data.util.exception.AppException
-import data.util.exception.DataException
-import data.util.exception.DatabaseException
+import common.exception.AppException
+import common.exception.DataException
+import common.exception.DatabaseException
 import software.amazon.awssdk.core.sync.RequestBody
 import software.amazon.awssdk.services.s3.S3Client
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest

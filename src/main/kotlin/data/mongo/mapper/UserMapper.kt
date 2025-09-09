@@ -1,7 +1,7 @@
 package com.data.mapper
 
 import com.data.mongo.entity.UserEntity
-import domain.model.user.User
+import domain.model.User
 
 
 fun UserEntity.toUser(): User{

@@ -6,19 +6,19 @@ import com.data.mapper.toSettingsEntity
 import com.data.mapper.toTokenEntity
 import com.data.mapper.toUser
 import com.data.mapper.toUserEntity
-import domain.model.user.User
-import domain.repository.user.UserRepository
+import domain.model.User
+import domain.repository.UserRepository
 import com.mongodb.client.model.Filters
 import com.mongodb.client.model.Updates
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import com.presentation.plugin.JWTService
-import data.util.MongoDBConstants.USER_COLLECTION
+import common.constant.MongoDBConstants.USER_COLLECTION
 
 import domain.util.Result
-import data.util.exception.AppException
-import data.util.exception.AuthException
-import data.util.exception.DataException
-import data.util.exception.DatabaseException
+import common.exception.AppException
+import common.exception.AuthException
+import common.exception.DataException
+import common.exception.DatabaseException
 import kotlinx.coroutines.flow.firstOrNull
 import kotlin.time.Duration.Companion.days
 

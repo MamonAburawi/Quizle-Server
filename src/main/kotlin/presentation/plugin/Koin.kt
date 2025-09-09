@@ -1,5 +1,6 @@
 package presentation.plugin
 
+import com.di.mongoModule
 import di.jwtModule
 import di.awsModule
 import di.koinModule
@@ -12,6 +13,6 @@ import org.koin.logger.slf4jLogger
 fun Application.configureKoin(){
     install(Koin){
         slf4jLogger()
-        modules(koinModule, jwtModule(), awsModule())
+        modules(koinModule, jwtModule(), awsModule(), mongoModule())
     }
 }

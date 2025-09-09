@@ -1,7 +1,7 @@
 package presentation.route.quiz_question
 
 
-import domain.repository.quiz.QuizQuestionRepository
+import domain.repository.QuizQuestionRepository
 import domain.util.onFailure
 import domain.util.onSuccess
 import domain.util.response.respondError

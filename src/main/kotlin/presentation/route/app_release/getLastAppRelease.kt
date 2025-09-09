@@ -1,6 +1,6 @@
 package presentation.route.app_release
 
-import domain.repository.app_release.AppReleaseInfoRepository
+import domain.repository.AppReleaseInfoRepository
 import com.presentation.route.app_release.AppReleasePath
 import domain.util.onFailure
 import domain.util.onSuccess

@@ -1,6 +1,6 @@
 package domain.util
 
-import data.util.exception.AppException
+import common.exception.AppException
 
 
 sealed interface Result<out D, out E: AppException> {

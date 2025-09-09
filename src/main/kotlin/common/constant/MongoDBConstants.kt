@@ -1,12 +1,10 @@
-package data.util
+package common.constant
 
 object MongoDBConstants {
 
 
     const val DATABASE_NAME = "quizle_db"
-    const val MONGO_DB_URL_VARIABLE = "MONGO_DB_URL" // this link stored locally on IDLE
 
-    const val JWT_CONFIGURATION_NAME = "jwt-auth"
 
 
     // collections

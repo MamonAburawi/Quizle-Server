@@ -1,7 +1,7 @@
 package data.mongo.mapper
 
 import data.mongo.entity.LogEventEntity
-import domain.model.user.LogEvent
+import domain.model.LogEvent
 
 fun LogEventEntity.toLogEvent(): LogEvent{
     return LogEvent(

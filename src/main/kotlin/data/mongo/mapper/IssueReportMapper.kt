@@ -1,7 +1,7 @@
 package data.mongo.mapper
 
 import com.data.mongo.entity.IssueReportEntity
-import com.domain.model.issue_report.IssueReport
+import domain.model.IssueReport
 
 
 fun IssueReportEntity.toIssueReport(): IssueReport{

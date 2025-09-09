@@ -1,6 +1,6 @@
 package presentation.route.issue_report
 
-import domain.repository.issue_report.IssueReportRepository
+import domain.repository.IssueReportRepository
 import domain.util.onFailure
 import domain.util.onSuccess
 import io.ktor.http.HttpStatusCode

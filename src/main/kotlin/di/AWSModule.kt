@@ -1,8 +1,6 @@
 package di
 
 import data.s3.S3Client
-import data.util.AWSConstants
-import data.util.MongoDBConstants
 import io.ktor.server.application.Application
 import org.koin.dsl.module
 

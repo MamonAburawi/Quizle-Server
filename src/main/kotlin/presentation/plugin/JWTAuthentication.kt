@@ -2,8 +2,8 @@ package com.presentation.plugin
 
 import com.auth0.jwt.JWT
 import com.auth0.jwt.algorithms.Algorithm
-import domain.model.user.User
-import data.util.MongoDBConstants
+import com.data.util.JWTConstants.JWT_CONFIGURATION_NAME
+import domain.model.User
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
@@ -18,7 +18,7 @@ import kotlin.time.Duration.Companion.days
 fun Application.configureJWTAuthentication(jwtService: JWTService) {
     install(Authentication) {
         val config = jwtService.jwtConfig
-        jwt(MongoDBConstants.JWT_CONFIGURATION_NAME) {
+        jwt(JWT_CONFIGURATION_NAME) {
             realm = config.realm
 
             val jwtVerifier = JWT

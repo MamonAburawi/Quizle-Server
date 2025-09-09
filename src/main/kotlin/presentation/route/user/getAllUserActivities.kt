@@ -1,6 +1,6 @@
 package com.presentation.route.user
 
-import domain.repository.user.LogEventRepository
+import domain.repository.LogEventRepository
 import domain.util.onFailure
 import domain.util.onSuccess
 import io.ktor.server.resources.get

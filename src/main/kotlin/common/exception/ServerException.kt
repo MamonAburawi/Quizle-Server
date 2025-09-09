@@ -1,4 +1,4 @@
-package data.util.exception
+package common.exception
 
 
 // General server exceptions

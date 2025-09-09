@@ -1,9 +1,8 @@
-package domain.repository.user
+package domain.repository
 
-import com.domain.model.quiz.QuizTopic
-import domain.model.user.User
+import domain.model.User
 import domain.util.Result
-import data.util.exception.AppException
+import common.exception.AppException
 
 interface UserRepository {
 

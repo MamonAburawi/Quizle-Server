@@ -1,4 +1,4 @@
-package data.util.exception
+package common.exception
 
 
 sealed class DatabaseException(messageEn: String, messageAr: String) : AppException(messageEn, messageAr) {

@@ -1,6 +1,6 @@
 package presentation.route.s3
 
-import domain.repository.s3.S3ServicesRepository
+import domain.repository.S3ServicesRepository
 import domain.util.onFailure
 import domain.util.onSuccess
 import io.ktor.server.resources.delete

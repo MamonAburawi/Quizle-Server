@@ -1,9 +1,9 @@
-package domain.repository.quiz
+package domain.repository
 
 
 import com.domain.model.quiz.QuizTopic
 import domain.util.Result
-import data.util.exception.AppException
+import common.exception.AppException
 
 interface QuizTopicRepository {
 

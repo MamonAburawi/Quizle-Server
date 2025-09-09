@@ -1,11 +1,11 @@
 package presentation.plugin
 
 import domain.model.ErrorResponse
-import data.util.exception.AppException
-import data.util.exception.AuthException
-import data.util.exception.DataException
-import data.util.exception.DatabaseException
-import data.util.exception.ServerException
+import common.exception.AppException
+import common.exception.AuthException
+import common.exception.DataException
+import common.exception.DatabaseException
+import common.exception.ServerException
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.install

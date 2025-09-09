@@ -4,14 +4,14 @@ import com.data.mongo.entity.AppReleaseInfoEntity
 import com.data.mapper.toAppReleaseInfo
 import com.data.mapper.toAppReleaseInfoEntity
 import com.domain.model.AppReleaseInfo
-import domain.repository.app_release.AppReleaseInfoRepository
+import domain.repository.AppReleaseInfoRepository
 import com.mongodb.client.model.Sorts
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
-import data.util.MongoDBConstants
+import common.constant.MongoDBConstants
 import domain.util.Result
-import data.util.exception.AppException
-import data.util.exception.DataException
-import data.util.exception.DatabaseException
+import common.exception.AppException
+import common.exception.DataException
+import common.exception.DatabaseException
 import kotlinx.coroutines.flow.firstOrNull
 
 

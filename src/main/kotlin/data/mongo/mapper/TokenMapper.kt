@@ -1,7 +1,7 @@
 package com.data.mapper
 
 import com.data.mongo.entity.UserEntity.TokenEntity
-import domain.model.user.User.Token
+import domain.model.User.Token
 
 
 fun Token.toTokenEntity(): TokenEntity {

@@ -1,4 +1,4 @@
-package com.domain.model.issue_report
+package domain.model
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

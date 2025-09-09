@@ -1,4 +1,4 @@
-package data.util
+package common.constant
 
 import software.amazon.awssdk.regions.Region
 

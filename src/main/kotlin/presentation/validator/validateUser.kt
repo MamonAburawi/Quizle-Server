@@ -1,6 +1,6 @@
 package presentation.validator
 
-import domain.model.user.User
+import domain.model.User
 import io.ktor.server.plugins.requestvalidation.RequestValidationConfig
 import io.ktor.server.plugins.requestvalidation.ValidationResult
 import presentation.validator.AppValidationRule.createInvalidResult

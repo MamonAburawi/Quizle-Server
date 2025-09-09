@@ -1,8 +1,8 @@
-package domain.repository.user
+package domain.repository
 
-import domain.model.user.LogEvent
+import domain.model.LogEvent
 import domain.util.Result
-import data.util.exception.AppException
+import common.exception.AppException
 
 interface LogEventRepository {
 

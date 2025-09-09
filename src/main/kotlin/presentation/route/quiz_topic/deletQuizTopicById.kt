@@ -1,6 +1,6 @@
 package presentation.route.quiz_topic
 
-import domain.repository.quiz.QuizTopicRepository
+import domain.repository.QuizTopicRepository
 import domain.util.onFailure
 import domain.util.onSuccess
 import io.ktor.server.routing.Route

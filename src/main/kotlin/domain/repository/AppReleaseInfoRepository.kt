@@ -1,8 +1,8 @@
-package domain.repository.app_release
+package domain.repository
 
 import com.domain.model.AppReleaseInfo
+import common.exception.AppException
 import domain.util.Result
-import data.util.exception.AppException
 
 interface AppReleaseInfoRepository {
 

@@ -1,7 +1,7 @@
 package com.data.mapper
 
 import com.data.mongo.entity.UserEntity.SettingsEntity
-import domain.model.user.User.Settings
+import domain.model.User.Settings
 
 fun Settings.toSettingsEntity(): SettingsEntity{
     return SettingsEntity(

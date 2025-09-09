@@ -1,7 +1,7 @@
 package presentation.plugin
 
-import domain.repository.app_release.AppReleaseInfoRepository
-import domain.repository.user.UserRepository
+import domain.repository.AppReleaseInfoRepository
+import domain.repository.UserRepository
 import com.presentation.plugin.JWTService
 import com.presentation.plugin.configureJWTAuthentication
 import presentation.route.quiz_question.getRandomQuestions
@@ -9,10 +9,10 @@ import presentation.route.quiz_question.insertQuestionBulk
 import presentation.route.user.getUserById
 import presentation.route.user.login
 import presentation.route.user.register
-import domain.repository.issue_report.IssueReportRepository
-import domain.repository.quiz.QuizQuestionRepository
-import domain.repository.quiz.QuizTopicRepository
-import domain.repository.user.LogEventRepository
+import domain.repository.IssueReportRepository
+import domain.repository.QuizQuestionRepository
+import domain.repository.QuizTopicRepository
+import domain.repository.LogEventRepository
 import presentation.route.app_release.getLastAppRelease
 import presentation.route.app_release.insetAppRelease
 import presentation.route.quiz_topic.getQuizTopicsUsedInQuestions
@@ -21,7 +21,7 @@ import com.presentation.route.user.getAllUserActivity
 import presentation.route.user.logEvent
 import presentation.route.user.terminateSession
 import presentation.route.user.updateUser
-import domain.repository.s3.S3ServicesRepository
+import domain.repository.S3ServicesRepository
 import io.ktor.server.application.*
 import io.ktor.server.http.content.staticResources
 import io.ktor.server.resources.Resources

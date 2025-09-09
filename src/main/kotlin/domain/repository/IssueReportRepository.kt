@@ -1,8 +1,8 @@
-package domain.repository.issue_report
+package domain.repository
 
-import com.domain.model.issue_report.IssueReport
+import domain.model.IssueReport
+import common.exception.AppException
 import domain.util.Result
-import data.util.exception.AppException
 
 interface IssueReportRepository {
 

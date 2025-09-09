@@ -1,6 +1,6 @@
 package presentation.validator
 
-import com.domain.model.issue_report.IssueReport
+import domain.model.IssueReport
 import presentation.validator.AppValidationRule.createInvalidResult
 import io.ktor.server.plugins.requestvalidation.*
 

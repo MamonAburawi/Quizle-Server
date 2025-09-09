@@ -1,6 +1,6 @@
 package presentation.route.user
 
-import domain.repository.user.UserRepository
+import domain.repository.UserRepository
 import domain.util.onFailure
 import domain.util.onSuccess
 import domain.util.response.respondSuccess

@@ -1,4 +1,6 @@
-package data.util
+package com.common
+
+
 
 fun String.getFileNameFromUrl(): String {
     val lastSlashIndex = this.lastIndexOf('/')
@@ -8,7 +10,3 @@ fun String.getFileNameFromUrl(): String {
         this
     }
 }
-
-
-
-
