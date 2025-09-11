@@ -30,7 +30,7 @@ This project is built following a **Clean Architecture** approach with distinct 
 
 2.  **Secret credential**:
 
-Add the `secret.conf` file with the following code.
+Create the `secret.conf` file with the following code in your resource directory in your project.
 
 ```hocon
 jwt {
